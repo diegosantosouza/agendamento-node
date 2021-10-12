@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Cadastro de consulta</h1>
+        <hr>
+        <form action="create" method="post">
+            <input type="text" name="name" id="name" placeholder="nome do paciente" class="form-control mt-1">
+            <input type="text" name="email" id="email" placeholder="email@email.com" class="form-control mt-1">
+            <input type="text" name="cpf" id="cpf" placeholder="CPF" class="form-control mt-1">
+            <input type="text" name="description" id="description" placeholder="description" class="form-control mt-1">
+            <input type="date" name="date" id="date" placeholder="01/01/2000" class="form-control mt-1">
+            <input type="time" name="time" id="time" class="form-control mt-1">
+            <button class="btn btn-success btn-block mt-1">Agendar</button>
+        </form>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="jquery.mask.min.js"></script>
+<script>
+    $('#cpf').mask('000.000.000-00');
+</script>
+
+</html>
