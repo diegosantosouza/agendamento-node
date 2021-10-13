@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const appointmentServices = require('./services/AppointmentServices');
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
@@ -41,7 +42,6 @@ app.get('/getcalendar', async (req, res) => {
 
 app.get('/event/:id', async (req, res) => {
     var appointment = await appointmentServices.GetById(req.params.id);
-    console.log(appointment);
     res.render('event', { appo: appointment });
 })
 
@@ -62,6 +62,11 @@ app.get('/serachresult', async (req, res) => {
     res.render('list', { appos });
 })
 
+var pollTime = 5000;
+
+setInterval(async() => {
+    await appointmentServices.SendNotification();
+},pollTime)
 app.listen(8080, () => {
     console.log("Server run in http://localhost:8080");
 })
