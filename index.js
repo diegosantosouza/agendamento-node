@@ -52,6 +52,16 @@ app.post('/finish', async (req, res) => {
     res.redirect('/');
 })
 
+app.get('/list', async (req, res) => {
+    var appos = await appointmentServices.GetAll(true);
+    res.render('list', { appos });
+})
+
+app.get('/serachresult', async (req, res) => {
+    var appos = await appointmentServices.Search(req.query.search);
+    res.render('list', { appos });
+})
+
 app.listen(8080, () => {
     console.log("Server run in http://localhost:8080");
 })

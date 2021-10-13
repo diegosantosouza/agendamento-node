@@ -27,24 +27,24 @@ class AppointmentServices {
     async GetAll(showFinished) {
         if (showFinished) {
             return await Appo.find();
-        }else{
-            var appos = await Appo.find({'finished': false});
+        } else {
+            var appos = await Appo.find({ 'finished': false });
             var appointments = [];
-            
+
             appos.forEach(appointment => {
-                if(appointment.date != undefined){
+                if (appointment.date != undefined) {
                     appointments.push(AppointmentFactory.Build(appointment))
                 }
             });
-            return appointments; 
+            return appointments;
         }
     }
 
     async GetById(id) {
         try {
-            var event = await Appo.findOne({'_id': id});
+            var event = await Appo.findOne({ '_id': id });
             return event;
-        }catch (err) {
+        } catch (err) {
             console.error(err);
             return false;
         }
@@ -52,11 +52,21 @@ class AppointmentServices {
 
     async Finish(id) {
         try {
-            await Appo.findByIdAndUpdate(id,{finished: true});
+            await Appo.findByIdAndUpdate(id, { finished: true });
             return true;
-        }catch (err) {
+        } catch (err) {
             console.error(err);
             return false;
+        }
+    }
+
+    async Search(query) {
+        try {
+            var appos = await Appo.find().or([{ email: query }, { cpf: query }])
+            return appos;
+        }catch (err) {
+            console.error(err);
+            return [];
         }
     }
 }
